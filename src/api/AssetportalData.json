@@ -1,0 +1,51 @@
+{
+  "code": 0,
+  "data": {
+      "dev_type_distribution": [
+          {
+              "name": "PLC",
+              "value": 5
+          },
+          {
+              "name": "工程师站",
+              "value": 2
+          },
+          {
+              "name": "网关",
+              "value": 2
+          },
+          {
+              "name": "RTU",
+              "value": 1
+          },
+          {
+              "name": "OTHERS",
+              "value": 39
+          }
+      ],
+      "ip_provider_distribution": [
+          {
+              "name": "移动",
+              "value": 15
+          },
+          {
+              "name": "电信",
+              "value": 8
+          },
+          {
+              "name": "联通",
+              "value": 4
+          },
+          {
+              "name": "其他",
+              "value": 22
+          }
+      ],
+      "num_stat": {
+          "app_protocol_num": 6,
+          "asset_num": 49,
+          "dev_type_num": 5,
+          "vendor_num": 3
+      }
+  }
+}

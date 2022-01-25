@@ -19,20 +19,40 @@
       <card-info-progress title="日志量(个）" value="10000" :progress="false" />
     </card-info-panel>
     <dashboard-card>
-      <dashboard-cell title="工业设备-地域分布" :bodyStyle="{ height: '450px' }">
+      <dashboard-cell title="工业设备-地域分布">
         <p class="maptitle">
-          <span>滨海新区</span>
+          <span style="color:#039972">滨海新区</span>
           工业设备数量：264 个
         </p>
-        <DashboardTJMap
+        <dashboard-TJMap
           id="TJMap"
           ref="TJMap"
           toolTitle="工业设备数量"
           :mapData="mapData"
         />
       </dashboard-cell>
-      <dashboard-cell title="工业企业-地域排名" :bodyStyle="{ height: '450px' }">
+      <dashboard-cell title="工业企业-地域排名">
         <region-rank/>
+      </dashboard-cell>
+    </dashboard-card>
+    <dashboard-card>
+      <dashboard-cell title="设备接入商分布">
+        <dashboard-barChart
+          id="AssetDevice"
+          ref="AssetDevice"
+          name="设备数量(个)"
+          toolTitle="设备数量"
+          unit="个"
+        />
+      </dashboard-cell>
+      <dashboard-cell title="设备接入商分布">
+        <dashboard-pieChart
+          id="Assetportal"
+          ref="Assetportal"
+          unit="%"
+          :toolTitle="{extra:'', tooltip1: '设备占比', tooltip2: '设备数量'}"
+          name="设备总数（个）"
+        />
       </dashboard-cell>
     </dashboard-card>
   </div>
@@ -40,28 +60,37 @@
 
 <script>
 import { formatterBarData, formatTJData } from '../utils/mapUtil'
-import TJData from './TJ.json'
+import TJData from '../api/TJ.json'
 import RegionRank from './RegionRank'
+import DashboardPieChart from '../components/DashboardPieChart'
+import DashboardBarChart from '../components/DashboardBarChart'
+import { echartsData1, echartsData2 } from '../api/apijson'
 
 export default {
   name: 'Home',
   data() {
     return {
-      mapData: []
+      mapData: [],
+      subtext: '0',
+      AssetportalData: [],
     }
   },
-  mounted() {
+  async mounted() {
     this.mapData = formatTJData(TJData.data.list, TJData.data.stat.name)
+    this.$refs.Assetportal.draw(echartsData1, this.subtext)
+    this.$refs.AssetDevice.draw(echartsData2)
   },
   components: {
-    RegionRank
+    RegionRank,
+    DashboardPieChart,
+    DashboardBarChart
   }
 }
 </script>
 
 <style scoped lang="scss">
 .home{
-  width: 1280px;
+  width: 1480px;
   margin: 0 auto;
 }
 .CardInfoProgress-subTitle{

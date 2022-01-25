@@ -6,7 +6,7 @@ export default {
     bodyStyle: {
       type: Object,
       default: () => {
-        return { height: '420px' }
+        return { height: '450px' }
       }
     },
     title: {
@@ -22,7 +22,7 @@ export default {
         bodyStyle={this.bodyStyle}
       >
         <h2 style="font-size: 16px; font-weight:bold; margin-bottom: 24px; padding-bottom: 0;line-height: 18px;">{this.title}</h2>
-        {this.$slots && this.$slots.default() && this.$slots.default().map((component) => component)}
+        {this.$slots.default().map((component) => component)}
       </a-card>
     )
   }

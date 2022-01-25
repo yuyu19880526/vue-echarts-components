@@ -15,12 +15,12 @@ import { ref } from 'vue'
 import { useNumberEffect } from '../effect/useNumberEffect'
 
 const newValEffect = (value, progress) => {
-  const newVal = ref(undefined)
+  const newVal = ref(null)
   const { val } = useNumberEffect(value)
   if (progress) {
     newVal.value = value
   } else {
-    newVal.value = val
+    newVal.value = val.value
   }
   return { newVal }
 }

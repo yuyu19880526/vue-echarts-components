@@ -10,7 +10,7 @@
 <script>
 import numeral from 'numeral'
 import { Table } from 'ant-design-vue'
-import data from './table.json'
+import data from '../api/table.json'
 const numberPretty = (num) => numeral(num).format('0,0')
 
 const columns = [
