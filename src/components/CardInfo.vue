@@ -1,7 +1,7 @@
 <template>
   <div class="header-info">
     <p>
-      {{ value }}
+      {{ val }}
     </p>
     <span style="margin-top:6px;">{{ title }}</span>
     <em v-if="bordered" />
@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { useNumberEffect } from '../effect/useNumberEffect'
+
 export default {
   name: 'CardInfo',
   props: {
@@ -24,6 +26,10 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  setup(props) {
+    const { val } = useNumberEffect(props.value)
+    return { val }
   }
 }
 </script>
