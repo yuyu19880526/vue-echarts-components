@@ -1,0 +1,51 @@
+{
+  "code": 0,
+  "data": {
+      "list": [
+          {
+              "cloud_count": 1,
+              "id": "120102",
+              "name": "河东区",
+              "online_count": 2,
+              "protect_count": 0,
+              "value": 3
+          },
+          {
+              "cloud_count": 1,
+              "id": "120110",
+              "name": "东丽区",
+              "online_count": 2,
+              "protect_count": 0,
+              "value": 3
+          },
+          {
+              "cloud_count": 0,
+              "id": "120104",
+              "name": "南开区",
+              "online_count": 1,
+              "protect_count": 0,
+              "value": 2
+          },
+          {
+              "cloud_count": 1,
+              "id": "120105",
+              "name": "河北区",
+              "online_count": 2,
+              "protect_count": 0,
+              "value": 2
+          },
+          {
+              "cloud_count": 0,
+              "id": "120106",
+              "name": "红桥区",
+              "online_count": 2,
+              "protect_count": 0,
+              "value": 2
+          }
+      ],
+      "pagination": {
+          "current_page": 1,
+          "total": 16
+      }
+  }
+}

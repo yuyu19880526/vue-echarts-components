@@ -9,6 +9,11 @@ import CardInfo from './components/CardInfo.vue'
 import CardInfoPanel from './components/CardInfoPanel.vue'
 import CardInfoProgress from './components/CardInfoProgress.vue'
 
+import DashboardCard from './components/DashboardCard.vue'
+import DashboardCell from './components/DashboardCell.vue'
+
+import DashboardTJMap from './components/DashboardTJMap.vue'
+
 
 const app = createApp(App)
 
@@ -16,9 +21,14 @@ app.use(store)
 app.use(router)
 app.use(Antd)
 
-app.component('card-info', CardInfo)
-app.component('card-info-panel', CardInfoPanel)
-app.component('card-info-progress', CardInfoProgress)
+app.component('CardInfo', CardInfo)
+app.component('CardInfoPanel', CardInfoPanel)
+app.component('CardInfoProgress', CardInfoProgress)
+
+app.component('DashboardCard', DashboardCard)
+app.component('DashboardCell', DashboardCell)
+
+app.component('DashboardTJMap', DashboardTJMap)
 
 
 app.mount('#app')

@@ -18,13 +18,44 @@
       </card-info-progress>
       <card-info-progress title="日志量(个）" value="10000" :progress="false" />
     </card-info-panel>
+    <dashboard-card>
+      <dashboard-cell title="工业设备-地域分布" :bodyStyle="{ height: '450px' }">
+        <p class="maptitle">
+          <span>滨海新区</span>
+          工业设备数量：264 个
+        </p>
+        <DashboardTJMap
+          id="TJMap"
+          ref="TJMap"
+          toolTitle="工业设备数量"
+          :mapData="mapData"
+        />
+      </dashboard-cell>
+      <dashboard-cell title="工业企业-地域排名" :bodyStyle="{ height: '450px' }">
+        <region-rank/>
+      </dashboard-cell>
+    </dashboard-card>
   </div>
 </template>
 
 <script>
+import { formatterBarData, formatTJData } from '../utils/mapUtil'
+import TJData from './TJ.json'
+import RegionRank from './RegionRank'
 
 export default {
-  name: 'Home'
+  name: 'Home',
+  data() {
+    return {
+      mapData: []
+    }
+  },
+  mounted() {
+    this.mapData = formatTJData(TJData.data.list, TJData.data.stat.name)
+  },
+  components: {
+    RegionRank
+  }
 }
 </script>
 

@@ -16,10 +16,10 @@ import { useNumberEffect } from '../effect/useNumberEffect'
 
 const newValEffect = (value, progress) => {
   const newVal = ref(undefined)
+  const { val } = useNumberEffect(value)
   if (progress) {
     newVal.value = value
   } else {
-    const { val } = useNumberEffect(value)
     newVal.value = val
   }
   return { newVal }
