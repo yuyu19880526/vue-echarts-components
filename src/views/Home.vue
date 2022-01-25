@@ -1,12 +1,6 @@
 <template>
   <div class="home">
     <card-info-panel :span="6">
-      <card-info title="设备数量(个)" :value="37622" :bordered="true" />
-      <card-info title="协议数量(个)" :value="27" :bordered="true" />
-      <card-info title="厂商数量(个)" :value="37127" :bordered="true" />
-      <card-info title="设备详细型号(个)" :value="16" />
-    </card-info-panel>
-    <card-info-panel :span="6">
       <card-info-progress title="CPU使用率" value="40.25%" :bordered="true" :marginLeft="16" />
       <card-info-progress title="内存使用率" value="96.88%" :bordered="true" />
       <card-info-progress title="磁盘使用率" value="1.58%" :bordered="true">
@@ -17,6 +11,12 @@
         </template>
       </card-info-progress>
       <card-info-progress title="日志量(个）" value="10000" :progress="false" />
+    </card-info-panel>
+    <card-info-panel :span="6">
+      <card-info title="设备数量(个)" :value="37622" :bordered="true" />
+      <card-info title="协议数量(个)" :value="27" :bordered="true" />
+      <card-info title="厂商数量(个)" :value="37127" :bordered="true" />
+      <card-info title="设备详细型号(个)" :value="16" />
     </card-info-panel>
     <dashboard-card>
       <dashboard-cell title="工业设备-地域分布">
