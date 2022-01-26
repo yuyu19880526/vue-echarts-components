@@ -1,5 +1,5 @@
 # vue-echarts-components
-![avatar](http://baidu.com/pic/doge.png)
+![avatar](http://p0.qhimg.com/t011c2c84d1ea09ded7.png)
 
 ## Project setup
 ```
