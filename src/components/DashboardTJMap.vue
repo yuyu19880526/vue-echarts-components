@@ -76,6 +76,7 @@ export default {
     draw (data) {
       const that = this
       this.data = data
+      this.chart && this.chart.dispose()
       this.chart = echarts.init(document.getElementById(this.id))
       echarts.registerMap('天津市', TJgeo, {})// 引入地图文件
       this.chart.setOption({
@@ -85,6 +86,7 @@ export default {
           showDelay: 0,
           transitionDuration: 0.2,
           backgroundColor: '#fff',
+          borderColor: '#fff',
           extraCssText: 'box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);',
           textStyle: {
             color: 'rgba(0,0,0,0.85);',
@@ -105,41 +107,45 @@ export default {
           bottom: 10,
           left: 'center',
           roam: 'move',
-          mapType: '天津市',
+          map: '天津市',
           zoom: this.zoomData,
           label: {
-            normal: {
-              show: true,
-              formatter: function (params) {
-                if (that.labelHiddenArr.includes(params.name) && (that.zoomData === 1 || that.zoomData === 2)) {
-                  return ''
-                } else {
-                  return params.name
-                }
-              },
-              textStyle: {
-                fontSize: 12,
-                fontWeight: 'bold',
-                color: '#000'
+            show: true,
+            formatter: function (params) {
+              if (that.labelHiddenArr.includes(params.name) && (that.zoomData === 1 || that.zoomData === 2)) {
+                return ''
+              } else {
+                return params.name
               }
             },
-            emphasis: {
-              show: true,
-              color: '#000'
-            }
+            fontSize: 12,
+            fontWeight: 'bold',
+            color: '#000'
           },
           itemStyle: {
-            normal: {
-              areaColor: '#D9F4EE',
-              borderColor: '#595959',
-              borderWidth: 0.5
-            }
+            areaColor: '#D9F4EE',
+            borderColor: '#595959',
+            borderWidth: 0.5
           },
           emphasis: {
             itemStyle: {
               areaColor: '#71edc2',
               borderColor: '#000',
               borderWidth: 0.5
+            },
+            label: {
+              show: true,
+              color: '#000'
+            }
+          },
+          select: {
+            itemStyle: {
+              areaColor: '#2fc49a',
+              borderColor: '#000000',
+              borderWidth: 0.5
+            },
+            label: {
+              color: '#fff'
             }
           },
           data: that.mapData

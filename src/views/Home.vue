@@ -55,35 +55,63 @@
         />
       </dashboard-cell>
     </dashboard-card>
+    <dashboard-card>
+      <dashboard-cell title="CPU使用率">
+        <dashboard-treeMap :data="typeDistributionData" ref="overviewTypeDistribution" />
+      </dashboard-cell>
+      <dashboard-cell title="CPU使用率">
+        <dashboard-lineChart
+          id="cpu"
+          ref="cpu"
+          name="CPU"
+          unit="%"
+          toolTitle="CPU使用率"
+          :data="cpuData"
+        />
+      </dashboard-cell>
+    </dashboard-card>
   </div>
 </template>
 
 <script>
 import { formatterBarData, formatTJData } from '../utils/mapUtil'
 import TJData from '../api/TJ.json'
+import treeData from '../api/tree.json'
 import RegionRank from './RegionRank'
 import DashboardPieChart from '../components/DashboardPieChart'
 import DashboardBarChart from '../components/DashboardBarChart'
-import { echartsData1, echartsData2 } from '../api/apijson'
+import DashboardLineChart from '../components/DashboardLineChart'
+import DashboardTreeMap from '../components/DashboardTreeMap'
+import { echartsData1, echartsData2, echartsData3 } from '../api/apijson'
 
 export default {
   name: 'Home',
   data() {
     return {
       mapData: [],
-      subtext: '0',
+      subtext: '21345',
       AssetportalData: [],
+      typeDistributionData: [],
+      cpuData: {
+        title: [],
+        datas: []
+      }
     }
   },
   async mounted() {
+    this.typeDistributionData = treeData.data.threat_type_dist.list
     this.mapData = formatTJData(TJData.data.list, TJData.data.stat.name)
-    this.$refs.Assetportal.draw(echartsData1, this.subtext)
     this.$refs.AssetDevice.draw(echartsData2)
+    this.$refs.Assetportal.draw(echartsData1, this.subtext)
+    this.cpuData = echartsData3
+    this.$refs.cpu.draw(echartsData3)
   },
   components: {
     RegionRank,
     DashboardPieChart,
-    DashboardBarChart
+    DashboardBarChart,
+    DashboardLineChart,
+    DashboardTreeMap
   }
 }
 </script>

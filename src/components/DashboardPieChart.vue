@@ -1,7 +1,7 @@
 <template>
   <div class="pieBox" :style="{height:height,width:width}">
     <div v-if="show" :id="id" :style="{height:height,width:width}"></div>
-    <empty-result v-else text="暂无数据" abs></empty-result>
+    <!-- <empty-result v-else text="暂无数据" abs></empty-result> -->
   </div>
 </template>
 <script>
@@ -107,6 +107,7 @@ export default {
           trigger: 'item',
           backgroundColor: '#fff',
           padding: [10, 10, 10, 10],
+          borderColor: '#fff',
           extraCssText: 'box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);',
           textStyle: {
             color: 'rgba(0,0,0,0.45)',
@@ -174,13 +175,13 @@ export default {
                 color: 'rgba(0,0,0,0.45)'
               }
             },
-            itemStyle: {
-              emphasis: {
+            emphasis: {
+              scale: false,
+              itemStyle: {
                 borderColor: '#000',
                 borderWidth: 1
               }
             },
-            hoverAnimation: false,
             color: this.pieColor,
             data: data
           }

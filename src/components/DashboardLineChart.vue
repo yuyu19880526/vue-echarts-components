@@ -1,19 +1,20 @@
 <template>
-  <div class="barBox" :style="{ height: height, width: width }">
-    <div v-if="show" :id="id" :style="{ height: height, width: width }"></div>
+  <div class="lineBox" :style="{height:height,width:width}">
+    <div v-if="show" :id="id" :style="{height:height,width:width}"></div>
     <!-- <empty-result v-else text="暂无数据" abs></empty-result> -->
   </div>
 </template>
 <script>
 import * as echarts from 'echarts'
 export default {
-  name: 'DashboardBarChart',
+  name: 'DashboardLineChart',
   data() {
     return {
       data: {
         title: [],
         datas: []
       },
+      option: {},
       show: true
     }
   },
@@ -25,27 +26,19 @@ export default {
     },
     height: {
       type: String,
-      default: '348px'
+      default: '356px'
     },
     width: {
       type: String
     },
     name: String,
-    toolTitle: {
-      type: String,
-      default: '设备数量'
-    },
+    toolTitle: String,
     unit: {
       type: String,
       default: '个'
-    },
-    type: {
-      type: String,
-      default: '1'
     }
   },
   mounted() {
-    // this.draw(this.data)
   },
   beforeDestroy() {
     if (!this.chart) {
@@ -56,22 +49,19 @@ export default {
   },
   methods: {
     async draw(data) {
+      const that = this
       if (data.datas.length === 0) {
         this.show = false
         return
       }
       this.show = true
       await Promise.resolve()
-      const that = this
       this.chart = echarts.init(document.getElementById(this.id))
       this.chart.setOption({
         tooltip: {
           trigger: 'axis',
           axisPointer: {
-            type: 'none',
-            shadowStyle: {
-              color: 'rgba(0,0,0, 0.04)'
-            }
+            type: 'line'
           },
           extraCssText: 'box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);',
           backgroundColor: '#fff',
@@ -80,7 +70,7 @@ export default {
             color: 'rgba(0,0,0,0.45)',
             fontSize: 12
           },
-          formatter: function (v) {
+          formatter: function(v) {
             var tooltipHtml = `<div style="line-height: 24px;">
             <span">${v[0].name}</span>
             <div style="color: #000">
@@ -105,18 +95,22 @@ export default {
         },
         grid: {
           left: 0,
-          right: '24px',
-          bottom: '16px',
+          right: '7px',
+          bottom: '24px',
           containLabel: true
         },
         xAxis: {
-          type: that.type === '1' ? 'value' : 'category',
+          type: 'category',
+          boundaryGap: false,
           data: data.title,
           axisLine: {
-            show: false
+           show: false
           },
           axisTick: {
-            show: false
+            show: true,
+            lineStyle: {
+               color: 'rgba(0,0,0,.45)'
+            }
           },
           axisLabel: {
             fontSize: 12,
@@ -124,11 +118,9 @@ export default {
           }
         },
         yAxis: {
-          type: that.type === '1' ? 'category' : 'value',
-          data: data.title,
-          inverse: that.type === '1',
+          type: 'value',
           axisLine: {
-            show: false
+           show: false
           },
           axisTick: {
             show: false
@@ -136,17 +128,30 @@ export default {
           axisLabel: {
             fontSize: 12,
             color: 'rgba(0,0,0,.45)',
-            formatter: function (v) {
-              var innerHtml = v.length > 8 ? v.substring(0, 8) + '...' : v
-              return innerHtml
+            formatter: function(val) {
+              return val + that.unit
             }
           }
         },
         series: [
           {
             name: this.name,
-            type: 'bar',
-            barMaxWidth: 12,
+            type: 'line',
+            smooth: true,
+            showSymbol: false,
+            symbolSize: 1,
+            areaStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                {
+                  offset: 0,
+                  color: '#2FC49A'
+                },
+                {
+                  offset: 1,
+                  color: 'rgba(255,255,255,0)'
+                }
+              ])
+            },
             itemStyle: {
               color: '#2FC49A',
             },
@@ -166,7 +171,7 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.barBox {
+.lineBox{
   position: relative;
   width: 100%;
 }

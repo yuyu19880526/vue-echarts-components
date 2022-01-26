@@ -1,4 +1,4 @@
-export const formatTJData = (arr, name, labelColor = '#fff', areaColor = '#2fc49a', borderColor = '#000000', borderWidth = 0.5) => {
+export const formatTJData = (arr, name) => {
   if (!Array.isArray(arr)) return false
   return arr.map(item => {
     if (item.name === name || name === '天津市') {
@@ -6,18 +6,6 @@ export const formatTJData = (arr, name, labelColor = '#fff', areaColor = '#2fc49
       obj.name = item.name
       obj.value = item.value
       obj.selected = true
-      obj.label = {
-        emphasis: {
-          color: labelColor
-        }
-      }
-      obj.emphasis = {
-        itemStyle: {
-          areaColor: areaColor,
-          borderColor: borderColor,
-          borderWidth: borderWidth
-        }
-      }
       return obj
     } else {
       return ({
