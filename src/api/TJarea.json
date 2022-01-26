@@ -1,0 +1,19 @@
+{
+  "code": 0,
+  "data": {
+      "victim_area_map": {
+          "data": [
+              {
+                  "name": "西青区",
+                  "value": 2776
+              },
+              {
+                  "name": "河西区",
+                  "value": 120
+              }
+          ],
+          "max": 2776,
+          "min": 0
+      }
+  }
+}

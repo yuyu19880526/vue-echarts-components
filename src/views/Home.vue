@@ -70,6 +70,24 @@
         />
       </dashboard-cell>
     </dashboard-card>
+    <dashboard-card>
+      <dashboard-cell title="被控IP区分析">
+        <dashboard-graphMap
+          id="OutreachTJMap"
+          ref="OutreachTJMap"
+          type="1"
+          toolTitle="被控IP"
+        />
+      </dashboard-cell>
+      <dashboard-cell title="外联IP国家分析">
+        <dashboard-graphMap
+          id="OutreachWORDMap"
+          ref="OutreachWORDMap"
+          type="2"
+          toolTitle="外联IP国家"
+        />
+      </dashboard-cell>
+    </dashboard-card>
   </div>
 </template>
 
@@ -77,11 +95,14 @@
 import { formatterBarData, formatTJData } from '../utils/mapUtil'
 import TJData from '../api/TJ.json'
 import treeData from '../api/tree.json'
+import TJarea from '../api/TJarea.json'
+import Worldarea from '../api/Worldarea.json'
 import RegionRank from './RegionRank'
 import DashboardPieChart from '../components/DashboardPieChart'
 import DashboardBarChart from '../components/DashboardBarChart'
 import DashboardLineChart from '../components/DashboardLineChart'
 import DashboardTreeMap from '../components/DashboardTreeMap'
+import DashboardGraphMap from '../components/DashboardGraphMap'
 import { echartsData1, echartsData2, echartsData3 } from '../api/apijson'
 
 export default {
@@ -105,13 +126,16 @@ export default {
     this.$refs.Assetportal.draw(echartsData1, this.subtext)
     this.cpuData = echartsData3
     this.$refs.cpu.draw(echartsData3)
+    this.$refs.OutreachTJMap.draw(TJarea.data.victim_area_map)
+    this.$refs.OutreachWORDMap.draw(Worldarea.data.attacker_country_map)
   },
   components: {
     RegionRank,
     DashboardPieChart,
     DashboardBarChart,
     DashboardLineChart,
-    DashboardTreeMap
+    DashboardTreeMap,
+    DashboardGraphMap
   }
 }
 </script>
